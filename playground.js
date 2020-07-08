@@ -94,21 +94,31 @@ function movebola()
     
     if (bola.x < esquerda.x + esquerda.largura - 15)
     {
-        newgame("winner player 2");
+        newgame("Jogador 2");
     } else if (bola.x + bola.largura > direita.x + 15)
     {
-        newgame("winner playes 1");
+        newgame("Jogador 1");
     }
 }
 
 function newgame(winner)
 {
-    if (winner == "player 1")
+    if (winner == "Jogador 1")
     {
         esquerda.score++; 
     }   else 
     {
         direita.score++;
+    }
+
+    if (esquerda.score == 5)
+    {
+        alert("Jogador 1 ganhou!!");
+        window.location.reload();
+    } else if (direita.score == 5)
+    {
+        alert("Jogador 2 ganhou!!");
+        window.location.reload();
     }
     
     esquerda.y = canvas.height/2 - esquerda.altura/2;
@@ -131,9 +141,8 @@ function desenha()
     ctx.fillRect(bola.x, bola.y, bola.largura, bola.altura);   
 
     ctx.font = "20px Arial ";
-    ctx.fillText("Player 1: " + esquerda.score, 50, 20);
-    ctx.fillText("Player 2: " + direita.score, canvas.width - 150, 20);
+    ctx.fillText("Jogador 1: " + esquerda.score, 50, 20);
+    ctx.fillText("Jogador 2: " + direita.score, canvas.width - 150, 20);
 }
 
 setInterval(desenha, 15);
-
