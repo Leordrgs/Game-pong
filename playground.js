@@ -3,18 +3,19 @@ var ctx = canvas.getContext("2d");
 
 var teclas = {};
 
+// Variáveis da bola
 var bola  = 
 {
     x: canvas.width/2 - 15,
     y: canvas.height/2 - 15,
-    altura: 30,
-    largura: 30,
+    raio: Math.PI*5,
     dirx: -1,
     diry: 1,
     mod: 0,
     speed: 2
 };
 
+// Variáveis da barra da esquerda 
 var esquerda = 
 {
     x: 10,
@@ -24,6 +25,8 @@ var esquerda =
     score: 0,
     speed: 10
 };
+
+// Variáveis da barra da direita
 var direita = 
 {
     x: 560,
@@ -69,13 +72,15 @@ function movebloco()
 
 }
 
+
+// Movimentando a bola
 function movebola()
 {
-    if (bola.y + bola.altura >= esquerda.y && bola.y <= esquerda.y + esquerda.altura && bola.x <= esquerda.x + esquerda.largura)
+    if (bola.y + bola.raio >= esquerda.y && bola.y <= esquerda.y + esquerda.altura && bola.x <= esquerda.x + esquerda.largura)
     {
         bola.dirx = 1;
         bola.mod += 0.2;
-    } else if (bola.y + bola.altura >= direita.y && bola.y <= direita.y + direita.altura && bola.x + bola.altura >= direita.x) 
+    } else if (bola.y + bola.raio >= direita.y && bola.y <= direita.y + direita.altura && bola.x + bola.raio >= direita.x) 
         {
             bola.dirx = -1;
             bola.mod += 0.2;
@@ -84,7 +89,7 @@ function movebola()
     if (bola.y <= 0)
     {
         bola.diry = 1;
-    } else if (bola.y + bola.altura >= canvas.height)
+    } else if (bola.y + bola.raio >= canvas.height)
         {
             bola.diry = -1;
         }
@@ -95,12 +100,14 @@ function movebola()
     if (bola.x < esquerda.x + esquerda.largura - 15)
     {
         newgame("Jogador 2");
-    } else if (bola.x + bola.largura > direita.x + 15)
+    } else if (bola.x + bola.raio > direita.x + 15)
     {
         newgame("Jogador 1");
     }
 }
 
+
+// Contagem de pontos 
 function newgame(winner)
 {
     if (winner == "Jogador 1")
@@ -123,11 +130,12 @@ function newgame(winner)
     
     esquerda.y = canvas.height/2 - esquerda.altura/2;
     direita.y = esquerda.y;
-    bola.y = canvas.height/2 - bola.altura/2;
-    bola.x = canvas.width/2 - bola.largura/2;
+    bola.y = canvas.height/2 - bola.raio/2;
+    bola.x = canvas.width/2 - bola.raio/2;
     bola.mod = 0;
 }
 
+//Desenho completo 
 function desenha()
 {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -138,7 +146,7 @@ function desenha()
     ctx.fillStyle = "white";
     ctx.fillRect(esquerda.x, esquerda.y, esquerda.largura, esquerda.altura);
     ctx.fillRect(direita.x, direita.y, direita.largura, direita.altura);
-    ctx.fillRect(bola.x, bola.y, bola.largura, bola.altura);   
+    ctx.fillRect(bola.x, bola.y, bola.raio, bola.raio);   
 
     ctx.font = "20px Arial ";
     ctx.fillText("Jogador 1: " + esquerda.score, 50, 20);
