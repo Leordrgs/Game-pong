@@ -8,7 +8,7 @@ var bola  =
 {
     x: canvas.width/2 - 15,
     y: canvas.height/2 - 15,
-    raio: Math.PI*5,
+    raio: 10,
     dirx: -1,
     diry: 1,
     mod: 0,
