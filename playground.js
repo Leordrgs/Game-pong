@@ -3,6 +3,8 @@ var ctx = canvas.getContext("2d");
 
 var teclas = {};
 
+
+
 // Variáveis da bola
 var bola  = 
 {
@@ -47,6 +49,8 @@ document.addEventListener("keyup", function (e)
 {
     delete teclas[e.keyCode];
 }, false);
+
+
 
 function movebloco()
 {
@@ -145,8 +149,12 @@ function desenha()
 
     ctx.fillStyle = "white";
     ctx.fillRect(esquerda.x, esquerda.y, esquerda.largura, esquerda.altura);
-    ctx.fillRect(direita.x, direita.y, direita.largura, direita.altura);
-    ctx.fillRect(bola.x, bola.y, bola.raio, bola.raio);   
+    ctx.fillRect(direita.x, direita.y, direita.largura, direita.altura); 
+    ctx.beginPath();
+    ctx.arc( bola.x, bola.y, bola.raio, 0, Math.PI * 2);
+    ctx.fill();  
+    ctx.closePath();
+  
 
     ctx.font = "20px Arial ";
     ctx.fillText("Jogador 1: " + esquerda.score, 50, 20);
