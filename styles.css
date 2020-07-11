@@ -1,12 +1,18 @@
 canvas{
+  position: absolute;
+  left: 50%;
+  top: 50%;
   background: black;
-  display: block;
-  margin: 0 auto;
+  margin-top: -300px;
+  margin-left: -300px;
 }
 
 footer{
-  width: 100%;
+  position: absolute;
+  width: 20%;
   height: 40px;
-  background: #000000;
+  background: black;
   color: white;
+  margin-top: 0;
+  top: 600px;
 }
